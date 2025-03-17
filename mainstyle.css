@@ -1,0 +1,837 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+
+/* poppins below */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&display=swap');
+
+
+
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+} 
+
+.main-container{
+    position: relative;
+    height: 776.7px;
+    width: 1700px; 
+    background-color: #0A1828; 
+    /* overflow: hidden;  */
+   
+} 
+
+
+
+h1{
+    font-family: "Playwrite GB S";
+    font-size: 5rem;
+    color: #BFA181; 
+    animation-name: slideInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none; 
+    
+} 
+h2{
+    font-family: "Libre Baskerville";
+    font-size: 2rem;
+    position: absolute;
+    left: 34%;
+    top: 550%;  
+    color: #BFA181; 
+    animation-name: slideInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+   
+
+} 
+
+
+
+
+.container{
+    
+   position: absolute;
+   /* left: 175px; */
+   top: 280px;
+
+   /* changes below */ 
+   left: 3px;
+
+} 
+.container h1{
+    position: absolute;
+    left: 180px;
+}
+
+/* .scroll{     
+    position: fixed;
+    height: 105px;
+    width: 5px;     
+    top: 86%;
+    left: 44px;
+} 
+
+
+.shine{
+    background-color: #BFA181;
+    box-shadow: 0 0 5px #BFA181, 0 0 5px #BFA181;    
+    animation: scrollindicator 1s infinite;
+    animation-delay: 0.1s;
+    height: 15px;
+    width: 5px;
+    position: absolute; 
+
+} */
+
+   
+
+
+@keyframes scrollindicator{ 
+     0%{
+        top: -101px ;
+     } 
+     100%{
+        top: calc(100% + 101px);
+     }
+} 
+
+
+
+
+@keyframes slideInLeft{
+    from{
+        transform: translateX(-1100px);
+        
+    } 
+    to{
+        transform: translateX(0px); 
+    }
+} 
+@keyframes slideInRight{
+    from{
+        transform: translateX(990px); 
+    } 
+    to{
+        transform: translateX(0px);  
+    }
+}
+
+
+.bubbles{
+    position: relative;              
+    display: flex;  
+   
+} 
+  
+  .bubbles span:nth-child(even){
+      background: #ff2d75;
+      box-shadow: 0 0 0 10px #ff2d7544, 
+      0 0 50px #ff2d75, 
+      0 0 100px #ff2d75;
+     
+      left: 5px;
+      
+      
+  
+  }
+  .bubbles span{
+      position: relative;
+      width: 29px;
+      height: 29px;
+      background-color: #4fc3dc;
+      margin: 0 4px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 10px #4fc3dc44, 
+      0 0 50px #4fc3dc, 
+      0 0 100px #4fc3dc;
+      animation: animate 120s linear infinite;
+      animation-duration: calc(135s /  var(--i));
+      
+  }  
+ 
+  
+  @keyframes animate{
+      0%{
+          transform: translateY(540px); 
+      }
+      100%{
+          transform: translateY(-776px) scale(1); 
+      }  
+  } 
+
+
+.mid-container{
+   min-height: 700px;
+    width: 1500px;
+    /* border: 5px solid red; */
+    position: absolute;
+    left: 1%;
+    /* overflow: hidden; */
+    background-color: #FAFDFF;
+    
+    /* animation: scrollFromBottom ease-in-out both;
+    animation-timeline: view(); 
+    animation-range: entry 30% cover 50%; 
+    animation-delay: 1s; */
+
+
+    
+} 
+.mid-left-container{
+    position: absolute;
+    left:2%;
+    top: 10%;
+    width: 640px;
+    height: 600px;
+    /* border: 5px solid blue; */
+   
+}
+.mid-left-container p{
+    font-family: "Baloo Bhai 2";
+    font-weight: 500;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center; 
+} 
+.mid-left-container h3{
+     line-height: 1.3;
+     font-family: "Baloo Bhai 2";
+     font-weight: 410;
+     font-size: 20px;
+     line-height: 1.5;
+     
+}
+ 
+
+.right-mid-container{
+    position: absolute;
+    right: 4%; 
+    top: 10%;
+    width: 640px;
+    height: 600px;
+    /* border: 5px solid blue;  */
+  
+} 
+.right-mid-container p{
+    font-family: "Baloo Bhai 2";
+    font-weight: 500;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    line-height: 1.5;
+
+} 
+.right-mid-container h3{
+    line-height: 1.5;
+     font-family: "Baloo Bhai 2";
+     font-weight: 410;
+     position: absolute;
+     top: 11%;
+     font-size: 20px;
+     
+}
+
+
+
+
+@keyframes scrollFromBottom{
+   0%{
+        opacity: 0;
+        transform: translateY(100px);
+    } 
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+
+.left-line{
+    position: absolute;
+    height: 2px;
+    width: 440px;
+    background-color: #cecece;
+    left: 16%;
+}
+.right-container{
+    position: absolute;
+    height: 2px;
+    width: 205px;
+    background-color: #cecece;
+    left: 33%;
+}
+
+.card-section{
+    position: absolute;
+    top: 1570px;
+    left: 55px;
+    /* border: 4px solid blue; */
+   min-height: 405px;
+    width: 1450px;
+    mask-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgb(255, 252, 252) 5%, /* Start the solid section earlier */
+    rgb(255, 246, 246) 95%, /* End the solid section later */
+    rgba(255, 255, 255, 0)
+);
+    
+   
+    
+}
+.upper-card-section{
+    position: absolute;
+    top: 14px;
+    left: 30px;
+    background-color: black;
+    height: 300px;
+    width: 300px; 
+    border-radius: 40px;
+    transition: 0.5s ease; 
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+}  
+
+ #img1{
+    object-fit: cover;
+   height: 300px;
+   width: 300px;
+    top: 10px;
+    left: 20px;
+    border-radius: 40px;
+    opacity: 0.65; 
+
+} 
+#img1:hover{
+    width: 530px;
+      height: 380px; 
+}
+
+.card-section h4{
+    position: absolute;
+    top: 5%;
+    left: 36.9%;
+    font-family: "Libre Baskerville"; 
+    font-size: 50px;
+    
+}
+.upper-card-section p{
+    color: #FAFDFF;
+    position: absolute;
+    bottom: 30px;
+    right: 34px;
+    font-family: "Libre Baskerville"; 
+    font-size: 32px;
+    
+} 
+.upper-card-section:hover p{
+    display: none;
+   
+}
+.upper-card-section .intro{
+    position: absolute;
+    color: #FAFDFF;
+    top: 10%;
+    left: 6%;  
+    font-family: "Libre Baskerville"; 
+    font-size: 30px;
+    display: none;
+    animation: slideIn 1.4s ease-in-out forwards; 
+}
+.upper-card-section:hover .intro{
+    display: block;
+}  
+.upper-card-section .text{
+    position: absolute;
+    color: #FAFDFF;
+    top: 24%; 
+    font-family: "Libre Baskerville"; 
+    display: none;
+}
+.upper-card-section:hover{
+      width: 530px;
+      height: 380px;
+     border: 2px solid white;
+     
+      
+} 
+
+.upper-card-section:hover .text{
+    position: absolute;
+    left: 10px;
+    display: block;
+    opacity: 1;
+    animation: slideIn 1.3s ease-in-out forwards;
+    font-size: 14px;
+
+}
+@keyframes slideIn{
+    0%{
+        opacity: 0;
+        transform: translateY(100%);
+    } 
+    100%{
+        opacity: 1;
+        transform: translateY(0);  
+    }
+}
+.upper-card-section .btn1{
+    position: absolute;
+    top: 289px; 
+    left: 17px;
+    border-radius: 25px;
+    padding: 14px;
+    width: 90px;
+    /* outline: none; */
+    border: #FAFDFF;
+    color: #FAFDFF;
+    display: none;  
+}
+ .upper-card-section:hover .btn1{
+    display: block;
+    
+    background-color: white; 
+    color: black; 
+    cursor: pointer; 
+    animation: slideIn 2.7s ease-in-out forwards;    
+} 
+
+.btn1:hover{
+    background-color: black !important;
+    border: 2px solid white !important;
+    color: white !important; 
+} 
+.upper-card-section{
+    /* animation-duration: 30s; */
+    animation-duration: 41.5s;
+    animation-name: scrollleft;   
+    animation-timing-function: linear;    
+    animation-iteration-count: infinite;   
+    position: absolute;
+    left: 100%;
+} 
+.item1 {
+    animation-delay: 0s; 
+}
+.item2 {
+    animation-delay: -5.9s; 
+}
+.item3 {
+    animation-delay: -11.8s;
+}
+.item4 {
+    animation-delay: -17.7s;
+}
+.item5 {
+    animation-delay: -23.6s;
+} 
+.item6{
+    animation-delay: -29.5s;
+}
+.item7{ 
+    animation-delay: -35.4s;
+}
+
+
+ 
+.card-section:hover .upper-card-section{
+    animation-play-state: paused !important;
+} 
+
+.card-section:hover .upper-card-section:not(:hover){
+    filter: blur(5px);     
+}
+
+
+
+@keyframes scrollleft{  
+
+    to{   
+        /* -300px se gap aa aayega items ke bich  */
+        /* 200px width hai so -200px kiya hai */
+        left: calc(-300px - 500px);  
+    }
+} 
+
+
+.footer{
+    /* background-color: red; */
+    position: relative;
+    top: 1400px;
+    height: 800vh;
+    width: 100vw; 
+    
+    background-color: black;
+}
+.footer #heading{
+    font-size: 3rem;
+    color: #fff;
+    font-family: "Baloo Bhai 2";
+    font-weight: 500; 
+    display: flex;
+    justify-content: center;
+    
+    
+} 
+.footer #java{
+    font-size: 5.5rem;
+    color: orangered;
+    font-weight: bold;
+    font-family: "Baloo Bhai 2";
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    rotate: -20deg; 
+    z-index: 2;
+}
+.footer #python{
+    font-size: 5.5rem;
+    color: yellow;
+    font-weight: bold;
+    font-family: "Baloo Bhai 2";
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    rotate: 20deg; 
+    z-index: 10;
+}
+.footer #javascript{
+    font-size: 5.5rem;
+    color: purple;
+    font-weight: bold;
+    font-family: "Baloo Bhai 2";
+    position: absolute;
+    top: 16%;
+    left: 10%;
+    rotate: -5deg;
+}
+.footer #she{
+    font-size: 5.5rem;
+    color: #00fff2;
+    font-weight: bold;
+    font-family: "Baloo Bhai 2";
+    position: absolute;
+    top: 20%;
+    left: 49%;
+    rotate: -5deg;
+}
+.footer .analysis{
+   font-size: 3rem;
+   font-family: "Baloo Bhai 2";
+   font-weight: bold;
+   color: #fff;
+   position: absolute;
+   top: 25%;
+   left: 42%;
+}
+.footer .horizontal-line-first{
+    background-color: white;
+    height: 2px;
+    width: 243px;
+    position: absolute;
+    top: 26%;
+    left: 42%;
+}
+.footer .horizontal-last-line{
+    background-color: white;
+    height: 2px;
+    width: 243px;
+    position: absolute;
+    top: 65%;
+    left: 40%;
+}
+.footer .horizontal-video-line{
+    background-color: white;
+    height: 2px;
+    width: 246px;
+    position: absolute;  
+    top: 78.3%;
+    left: 43.5%;
+}  
+.footer .horizontal-ending-left-title{
+    background-color: white;
+    height: 2px;
+    width: 246px;
+    position: absolute;
+    top: 90.59%;
+    left: 20%;
+}
+.footer .horizontal-ending-right-title{
+    background-color: white;
+    height: 2px;
+    width: 246px; 
+    position: absolute;
+    top: 90.59%;
+    right: 22.7%;
+}
+.footer .horizontal-practice-line{
+    height: 2px;
+    width: 332px;
+    position: absolute;
+    background-color: #fff;
+    top: 85%;
+    left: 38%;
+}
+
+.footer #javaanalysis{
+    font-size: 1.2rem;
+    font-weight: semi-bold;
+    font-family: "Baloo Bhai 2";
+    color: #fff;
+    position: absolute;
+    top: 29%; 
+    right: 35%;
+    left: 7%;
+    /* background-color: red; */
+    z-index: 2;
+
+}
+.footer #bold{
+    font-weight: bold;
+}
+.footer #pythonanalysis{
+    font-size: 1.2rem;
+    font-weight: semi-bold;
+    font-family: "Baloo Bhai 2";
+    color: #fff;
+    position: absolute;
+    top: 38%; 
+    right: 7%;
+    left: 35%;
+    z-index: 4;
+}
+.footer #javascriptanalysis{
+    font-size: 1.2rem;
+    font-weight: semi-bold;
+    font-family: "Baloo Bhai 2";
+    color: #fff;
+    position: absolute;
+    top: 47%; 
+    right: 35%;
+    left: 7%;
+    z-index: 4;
+}
+.footer #sheanalysis{
+    font-size: 1.2rem;
+    font-weight: semi-bold;
+    font-family: "Baloo Bhai 2";
+    color: #fff;
+    position: absolute;
+    top: 56%; 
+    right: 7%;
+    left: 35%;
+    z-index: 4;
+}
+.footer #bold-con{
+    font-size: 3rem;
+    position: absolute;
+    top: 64%;
+    left: 40%;
+}
+
+.footer .conclusion {
+    font-size: 1.2rem;
+    font-weight: semi-bold;
+    font-family: "Baloo Bhai 2";
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    z-index: 2;
+  }
+  
+  .footer .conclusion ul {
+    list-style-type: disc;
+    padding: 0;
+    margin: 15px;
+    position: absolute;
+    top: 66%;
+    left: 25%;
+    right: 10%;
+    z-index: 2;
+    
+  }
+  
+  .footer .conclusion li {
+    margin: 18px 0;
+    z-index: 2;
+    
+  }
+  
+  #bold-con {
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 4;
+  } 
+  .footer .last{
+    font-size: 1.2rem;
+    font-weight: semi-bold;
+    font-family: "Baloo Bhai 2";
+    color: #fff; 
+    position: absolute;
+    top: 73.2%;
+    left: 24%;
+    right: 17%;
+    z-index: 2;
+  }
+  .footer #bold-vid{
+    position: absolute;
+    top: 77.5%;
+    left: 43%;
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: bold;
+    font-family: "Baloo Bhai 2";
+    z-index: 2;
+  }
+.footer .Video-Resources #vid-java{
+    position: absolute;
+    position: absolute;
+    top: 79%;
+    left: 26.1%;
+    font-size: 2rem;
+    z-index: 2;
+}
+.footer .Video-Resources #vid-java a:hover {
+    color: #fff 
+  }
+  .footer .Video-Resources #vid-java a{
+    /* color: #b1dde6; */
+    color: rgb(252, 52, 252);
+  }
+.footer .last-title{
+    position: absolute;
+    top: 90%;
+    left: 34.5%;     
+    font-size: 2.9rem;
+    font-weight: semi-bold;
+    color: #fff;
+    font-family: "Baloo Bhai 2";
+}
+
+
+#cursor{
+    height: 20px;
+    width: 20px; 
+    position: fixed;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 5;
+} 
+
+.footer .practice-platform{
+    color: #fff;
+    font-family: "Baloo Bhai 2";
+    font-size: 1rem;
+    position: absolute;
+    top: 87%;
+
+}
+.footer .para{
+    color: #fff;
+    font-family: "Baloo Bhai 2";
+    font-size: 2rem;
+    font-weight: bold;
+    position: absolute;
+    top: 83.9%;
+    left: 35%;
+}
+.footer p{
+     display: inline-block;
+     margin-right: 200px;
+     margin-left: 110px;
+     font-size: 16px;
+     font-family: "Baloo Bhai 2";
+}
+.footer .practice-platform a{
+    margin-right: 240px ;
+    margin-left: 155px;
+    color: #4fc3dc;
+}
+.footer .practice-platform a:hover{
+    color: #fff;   
+}
+
+
+.footer .svg-container{
+    position: absolute;
+    top: 0%;
+    left: 0%; 
+    
+}
+
+.main-container #image{
+    position: absolute;
+    top: 32%;
+    left:11.5%;
+    
+
+}
+.mid-container .worm{
+    position: absolute;
+    left: 80%;
+    top: 45%;
+}
+.mid-container .right-mid-container{
+    z-index: 2;
+}
+
+
+.last-title a{
+    color: #00fff2;
+
+}
+.last-title a:hover{
+    color: #fff;
+
+}
+
+
+/* .footer p{
+    color: black;
+    font-family: "Libre Baskerville"; 
+    font-size: 30px;
+    position: absolute;
+    left: 43%;
+    top: 60px;
+    
+
+}
+
+.footer #hori-line{
+    position: absolute; 
+    top: 76px;
+    left: 320px;
+    height: 2px;
+    width: 300px;
+    background-color: #bbbbbb;
+}  
+
+.footer #right-line{
+    position: absolute; 
+    top: 76px;
+    right: 285px;
+    height: 2px;
+    width: 300px;
+    background-color: #bbbbbb;
+} */

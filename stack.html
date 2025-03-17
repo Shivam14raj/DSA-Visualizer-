@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Visualization with D3.js</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(to right, #FF512F, #DD2476);
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #stack {
+            display: flex;
+            flex-direction: column-reverse; /* Reverse the order of items */
+            align-items: center;
+            border: none;
+            width: 200px;
+            height: 300px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .item {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 2px solid #007bff;
+            background-color: #007bff;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 150px;
+            margin-right: 44px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button{
+             padding: 10px ;
+             border-radius: 5px;
+             outline: none;
+             background-color: #fff;
+             color: black;
+             border: none; 
+             border-radius: 12px;
+             
+        }
+        button:hover{
+            background-color: black;
+            color: #fff;
+        }
+        h1{
+            color: #ffffff;
+        }
+          
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stack Visualization (LIFO)</h1>
+        <div id="stack"></div>
+        <div class="controls">
+            <input type="number" id="value" placeholder="Enter a value" />
+            <button id="push">Push</button>
+            <button id="pop">Pop</button>
+        </div>
+    </div>
+    <script>
+        const stack = [];
+        const stackElement = d3.select("#stack");
+
+        function updateStack() {
+            stackElement.selectAll("*").remove(); // Clear previous items
+
+            stack.forEach((value) => {
+                stackElement.append("div")
+                    .attr("class", "item")
+                    .text(value);
+            });
+        }
+
+        document.getElementById("push").addEventListener("click", () => {
+            const value = document.getElementById("value").value;
+            if (value) {
+                stack.push(value); // Push value to stack
+                updateStack();
+                document.getElementById("value").value = ""; // Clear input field
+            } else {
+                alert("Please enter a value to push onto the stack.");
+            }
+        });
+
+        document.getElementById("pop").addEventListener("click", () => {
+            if (stack.length > 0) {
+                stack.pop(); // Pop value from stack
+                updateStack();
+            } else {
+                alert("The stack is empty!");
+            }
+        });
+    </script>
+     <script>
+        window.embeddedChatbotConfig = {
+        chatbotId: "IJVTwrqkXM5WL625kvxW0",
+        domain: "www.chatbase.co"
+        }
+        </script>
+        <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="IJVTwrqkXM5WL625kvxW0"
+        domain="www.chatbase.co"
+        defer>
+        </script>
+</body>
+</html>

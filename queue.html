@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Visualization with D3.js</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: linear-gradient(to right, #FF512F, #DD2476);
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 { 
+            margin-bottom: 20px; 
+            color: #fff;
+        }
+
+        #queue {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            border: none;
+            width: 200px;
+            height: 300px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .item {
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 2px solid #007bff;
+            background-color: #007bff;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .controls {
+            margin-top: 10px; 
+        }
+
+        input {
+            padding: 10px;
+            width: 150px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px; 
+            border: none;
+            background-color: #fff;
+            color: black;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: black; 
+            color: #fff;
+        }
+        #value{
+            border-radius: 18px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Queue Visualization (FIFO)</h1>
+        <div id="queue"></div>
+        <div class="controls">
+            <input type="number" id="value" placeholder="Enter a value" />
+            <button id="enqueue">Enqueue</button>
+            <button id="dequeue">Dequeue</button>
+        </div>
+    </div>
+    <script>
+        const queue = [];
+        const queueElement = d3.select("#queue");
+
+        function updateQueue() {
+            queueElement.selectAll("*").remove(); 
+
+            queue.forEach((value) => {
+                queueElement.append("div")
+                    .attr("class", "item")
+                    .text(value);
+            });
+        }
+
+        document.getElementById("enqueue").addEventListener("click", () => {
+            const value = document.getElementById("value").value;
+            if (value) {
+                queue.push(value); 
+                updateQueue();
+                document.getElementById("value").value = ""; 
+            } else {
+                alert("Please enter a value to enqueue.");
+            }
+        });
+
+        document.getElementById("dequeue").addEventListener("click", () => {
+            if (queue.length > 0) {
+                queue.shift(); 
+                updateQueue();
+            } else {
+                alert("The queue is empty!");
+            }
+        });
+    </script>
+     <script>
+        window.embeddedChatbotConfig = {
+        chatbotId: "IJVTwrqkXM5WL625kvxW0",
+        domain: "www.chatbase.co"
+        }
+        </script>
+        <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="IJVTwrqkXM5WL625kvxW0"
+        domain="www.chatbase.co"
+        defer>
+        </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Visualizer</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, #FF512F, #DD2476);
+            color: #fff;
+            
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #visualization {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .bar {
+            transition: all 0.2s ease;
+        }
+
+        .text {
+            font-size: 17px;
+            fill: #fff;
+            text-anchor: middle;
+        }
+
+        .description {
+            color: #fff;
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3); */
+            border-radius: 12px;
+            background-color: white;
+            border: none;
+            transition-duration: 0.3s;
+            margin: 0 10px;
+        }
+
+        button:hover {
+            /* background-color: rgb(252, 168, 182); */
+            background-color: black;
+            color: #fff;
+            border: none;
+        }
+
+        #steps {
+            color: #fff;  
+            margin-top: 20px;
+            font-size: 1rem;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        #input-container {
+            text-align: center;
+            margin-bottom: 20px;
+            
+        }
+
+        #numbers {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border-radius: 22px ;
+            border: none;
+            /* border: 3px solid red; */ 
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bubble Sort Visualizer</h1>
+
+<div id="input-container">
+    <input id="numbers" type="text" placeholder="Enter numbers separated by commas (e.g: 20,10,40,50,100)" />
+    <button onclick="initializeVisualization()">Visualize</button>
+</div>
+
+<div id="visualization"></div>
+
+<div class="button-container">
+    <button onclick="startSort()">Start Sorting</button>
+    <button id="pauseBtn" onclick="togglePause()">Pause</button>
+</div>
+
+<div id="description" class="description"></div>
+<div id="steps">
+    <h2>Steps:</h2> 
+    <ul id="stepsList"></ul>
+</div>
+
+<script>
+    let data = [30, 86, 168, 281, 303, 365, 120, 460, 240, 180]; // Preloaded dataset
+    let paused = false;
+    let sortingInProgress = false;
+
+    const svgWidth = 600;
+    const svgHeight = 500;
+    const barPadding = 5;
+    let barWidth;
+
+    let svg, bars, labels;
+
+    // Initialize visualization with preloaded data
+    document.addEventListener("DOMContentLoaded", () => {
+        initializeVisualization();
+    });
+
+    function initializeVisualization() {
+        const input = document.getElementById("numbers").value.trim();
+        if (input) {
+            data = input.split(",").map(num => parseInt(num.trim()));
+            if (data.some(isNaN)) {
+                alert("Invalid input. Please enter only numbers separated by commas.");
+                return;
+            }
+        }
+
+        barWidth = (svgWidth / data.length) - barPadding;
+
+        // Clear previous visualization
+        document.getElementById("visualization").innerHTML = "";
+
+        svg = d3.select("#visualization")
+            .append("svg")
+            .attr("width", svgWidth)
+            .attr("height", svgHeight);
+
+        // Create bars
+        bars = svg.selectAll("rect")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", (d, i) => i * (barWidth + barPadding))
+            .attr("y", d => svgHeight - d)
+            .attr("width", barWidth)
+            .attr("height", d => d)
+            .attr("fill", "#333333");
+
+        // Create text labels
+        labels = svg.selectAll("text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("class", "text")
+            .attr("x", (d, i) => i * (barWidth + barPadding) + barWidth / 2)
+            .attr("y", d => svgHeight - d - 10)
+            .text(d => d);
+
+        document.getElementById("stepsList").innerHTML = ""; // Clear steps
+        document.getElementById("description").innerText = "Visualization initialized. Ready to sort!";
+    }
+
+    async function bubbleSort(arr) {
+        sortingInProgress = true;
+        let swapped;
+        let stepCount = 1;
+
+        do {
+            swapped = false;
+            for (let i = 0; i < arr.length - 1; i++) {
+                while (paused) await sleep(100); // Wait if paused
+
+                logStep(stepCount++, `Comparing ${arr[i]} and ${arr[i + 1]} because they are adjacent.`);
+
+                if (arr[i] > arr[i + 1]) {
+                    [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+                    swapped = true;
+                    logStep(stepCount++, `Swapped ${arr[i + 1]} and ${arr[i]} because ${arr[i + 1]} is larger.`);
+                    await updateVisualization(arr, i, i + 1);
+                }
+            }
+        } while (swapped);
+
+        document.getElementById("description").innerText = "Sorting completed!";
+        sortingInProgress = false;
+    }
+
+    async function updateVisualization(arr, index1, index2) {
+        return new Promise(resolve => {
+            bars.data(arr)
+                .transition()
+                .duration(800)
+                .attr("y", d => svgHeight - d)
+                .attr("height", d => d)
+                .attr("fill", (d, i) => (i === index1 || i === index2) ? "#fff" : "#333333")
+                .transition()
+                .duration(200)
+                .attr("fill", "#333333");
+
+            labels.data(arr)
+                .transition()
+                .duration(800)
+                .attr("y", d => svgHeight - d - 10)
+                .text(d => d);
+
+            setTimeout(resolve, 1000);
+        });
+    }
+
+    function logStep(step, message) {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>Step ${step}:</strong> ${message}`;
+        document.getElementById("stepsList").appendChild(li);
+    }
+
+    function startSort() {
+        if (!sortingInProgress) {
+            document.getElementById("description").innerText = "Sorting in progress...";
+            bubbleSort(data);
+        }
+    }
+
+    function togglePause() {
+        paused = !paused;
+        document.getElementById("pauseBtn").innerText = paused ? "Resume" : "Pause";
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+</script>
+
+
+<script>
+    window.embeddedChatbotConfig = {
+    chatbotId: "IJVTwrqkXM5WL625kvxW0",
+    domain: "www.chatbase.co"
+    }
+    </script>
+    <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="IJVTwrqkXM5WL625kvxW0"
+    domain="www.chatbase.co"
+    defer>
+    </script>
+</body>
+</html>
